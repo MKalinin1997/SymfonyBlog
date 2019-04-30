@@ -47,3 +47,13 @@ twig:
 fos_rest:
     zone:
         - { path: ^/api/* }
+
+jms_serializer:
+    #parameters:
+    #jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+    metadata:
+        cache: file
+        debug: "%kernel.debug%"
+        file_cache:
+            dir: "%kernel.cache_dir%/serializer"
+        auto_detection: true
