@@ -34,6 +34,26 @@
                 }
             }
         }
+        function ajaxSortRequest(page, sort, order, i) {
+            $.ajax({
+                type: "GET",
+                url: "/xml/"+page+"/"+sort+"/"+order[i],
+                dataType: "html",
+                success: function (htm) {
+                    replaceTable(5,10,htm);
+                    if (order[i] === 'desc') {
+                        order[i] = "asc";
+                    }
+                    else order[i] = "desc";
+                },
+                error: function() {
+                    alert(1);
+                }
+            });
+        }
+        var order;
+        if (order === undefined)
+            order = ['desc','desc','desc','desc','desc'];
         var sort;
         if (sort === undefined)
             sort = 'voltoday';
@@ -67,74 +87,24 @@
                 });
             });
         $('#sortByName').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/xml/"+page+"/secname",
-                dataType: "html",
-                success: function (htm) {
-                    replaceTable(5,10,htm);
-                    sort = 'secname';
-                },
-                error: function() {
-                    alert(1);
-                }
-            });
+            sort = 'secname';
+            ajaxSortRequest(page, sort, order, 0);
         });
         $('#sortByPrice').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/xml/"+page+"/prevprice",
-                dataType: "html",
-                success: function (htm) {
-                    replaceTable(5,10,htm);
-                    sort = 'prevprice';
-                },
-                error: function() {
-                    alert(1);
-                }
-            });
+            sort = 'prevprice';
+            ajaxSortRequest(page, sort, order, 1);
         });
         $('#sortByChanges').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/xml/"+page+"/changes",
-                dataType: "html",
-                success: function (htm) {
-                    replaceTable(5,10,htm);
-                    sort = 'changes';
-                },
-                error: function() {
-                    alert(1);
-                }
-            });
+            sort = 'changes';
+            ajaxSortRequest(page, sort, order, 2);
         });
         $('#sortByVolume').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/xml/"+page+"/voltoday",
-                dataType: "html",
-                success: function (htm) {
-                    replaceTable(5,10,htm);
-                    sort = 'voltoday';
-                },
-                error: function() {
-                    alert(1);
-                }
-            });
+            sort = 'voltoday';
+            ajaxSortRequest(page, sort, order, 3);
         });
         $('#sortByLastUpdate').click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/xml/"+page+"/updatetime",
-                dataType: "html",
-                success: function (htm) {
-                    replaceTable(5,10,htm);
-                    sort = 'updatetime';
-                },
-                error: function() {
-                    alert(1);
-                }
-            });
+            sort = 'updatetime';
+            ajaxSortRequest(page, sort, order, 4);
         });
     </script>
 {% endblock %}

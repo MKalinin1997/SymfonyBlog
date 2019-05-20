@@ -34,9 +34,9 @@ class PageController extends Controller
         ));
     }
     /**
-     * @Route("/xml/{page}/{sort}", name="xml", methods={"GET"})
+     * @Route("/xml/{page}/{sort}/{order}", name="xml", methods={"GET"})
      */
-    public function xmlAction($page = 0,$sort = 'voltoday') {
+    public function xmlAction($page = 0,$sort = 'voltoday',$order="DESC") {
  //       $page = $_GET["page"];
         $em = $this->getDoctrine()
             ->getManager();
@@ -46,7 +46,7 @@ class PageController extends Controller
             ->setMaxResults(10)
             ->setFirstResult($page*10)
             ->from('App:Xml4','b')
-            ->addOrderBy('b.'.$sort, 'DESC')
+            ->addOrderBy('b.'.$sort, $order)
             ->getQuery()
         ->getResult();
         return $this->render('product/xml.html.twig', array(
