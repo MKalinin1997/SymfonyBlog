@@ -1,0 +1,22 @@
+{
+  "name": "name",
+  "description": "description",
+  "main": "mainfile",
+  "authors": [
+    "MKalinin1997 <googology@yandex.ru>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/MKalinin1997/SymfonyBlog",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}

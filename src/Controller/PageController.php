@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Enquiry;
 use App\Form\EnquiryType;
+use App\Entity\Xml4;
 
 
 class PageController extends Controller
@@ -30,6 +31,27 @@ class PageController extends Controller
 
         return $this->render('product/index.html.twig', array(
             'blogs' => $blogs
+        ));
+    }
+    /**
+     * @Route("/xml/{page}", name="xml", methods={"GET"})
+     */
+    public function xmlAction($page = 0) {
+ //       $page = $_GET["page"];
+        $em = $this->getDoctrine()
+            ->getManager();
+  //      $xml = $em->getRepository(Xml4::class)->findAll();
+        $xml = $em->createQueryBuilder()
+            ->select('b')
+            ->setMaxResults(10)
+            ->setFirstResult($page*10)
+            ->from('App:Xml4','b')
+            ->addOrderBy('b.voltoday', 'DESC')
+            ->getQuery()
+        ->getResult();
+        return $this->render('product/xml.html.twig', array(
+            'xml' => $xml,
+            'page' => $page
         ));
     }
     /**

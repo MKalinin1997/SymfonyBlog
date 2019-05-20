@@ -1,4 +1,7 @@
 {
+    "components/jquery": {
+        "version": "3.3.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -188,6 +191,9 @@
             "./config/packages/prod/jms_serializer.yaml"
         ]
     },
+    "kriswallsmith/assetic": {
+        "version": "v1.0.5"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -265,6 +271,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "robloach/component-installer": {
+        "version": "0.2.3"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"

@@ -1,0 +1,58 @@
+{#{% extends 'product/layout.html.twig' %}#}
+
+
+{% block head %}
+{% block title %}
+    <title>Symfony</title>
+{% endblock %}
+    <script src="/js/jquery.js"></script>
+    <script src="/js/ajax.js"></script>
+{% endblock %}
+{% block body %}
+    <table border="1" class="example">
+        <th>Краткое наименование</th>
+        <th>Цена последней сделки</th>
+        <th>Изменение цены относительно последней цены предыдущего дня</th>
+        <th>Объём сделок</th>
+        <th>Время последнего обновления</th>
+        {% for xmls in xml %}
+            <tr>
+                <td class="examplee">{{ xmls.secname }}</td>
+                <td>{{ xmls.prevprice }}</td>
+                <td>{{ xmls.changes }}</td>
+                <td>{{ xmls.voltoday }}</td>
+                <td>{{ xmls.updatetime }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <button class="prev">Назад</button>
+    <button class="next">Далее</button>
+    <script>
+        var page;
+        if (page === undefined)
+            page = 0;
+        $('.prev').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/xml/"+(--page),
+                    dataType: "html",
+                    success: function (htm) {
+                        $('body').html(htm);
+                    },
+                    error : function() {
+                        page = 0;
+                    }
+                });
+            });
+        $('.next').click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/xml/"+(++page),
+                    dataType: "html",
+                    success: function (htm) {
+                        $('body').html(htm);
+                    }
+                });
+            });
+    </script>
+{% endblock %}
