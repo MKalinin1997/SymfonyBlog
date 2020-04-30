@@ -15,7 +15,7 @@
     "dependencies": {
         "ajax": "^0.0.4",
         "ajax.js": "^2.0.0",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "jquery.js": "0.0.2-security"
     }
 }
